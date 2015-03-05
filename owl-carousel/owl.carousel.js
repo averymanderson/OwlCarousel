@@ -678,6 +678,14 @@ if (typeof Object.create !== "function") {
             base.afterGo();
         },
 
+        peek : function (speed) {
+            var base = this,
+                peekAmount = Math.floor(base.itemWidth * .1);
+
+            base.css2slide(base.positionsInArray[base.currentItem] - peekAmount, speed);
+            base.css2slide(base.positionsInArray[base.currentItem], speed);
+        },
+
         afterGo : function () {
             var base = this;
 
@@ -1113,6 +1121,9 @@ if (typeof Object.create !== "function") {
             });
             base.$elem.on("owl.jumpTo", function (event, item) {
                 base.jumpTo(item);
+            });
+            base.$elem.on("owl.peek", function (event, item) {
+                base.peek();
             });
         },
 
